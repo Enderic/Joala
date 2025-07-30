@@ -32,7 +32,14 @@ impl Counter {
         column![
             button("Increment").on_press(Message::Increment)
                 .style(|theme: &Theme, status|{
+                    let palette = theme.extended_palette();
 
+                    match status {
+                        button::Status::Active => {
+                            button::Style::default().with_background(palette.success.strong.color)
+                        },
+                        _ => button::primary(theme, status),
+                    }
                 }),
             text(self.value).size(50),
             button("Decrement").on_press(Message::Decrement)
