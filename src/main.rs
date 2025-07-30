@@ -1,5 +1,5 @@
-use iced::Center;
-use iced::widget::{Column, button, column, text};
+use iced::{Center, Theme};
+use iced::widget::{button, column, text, Column};
 
 pub fn main() -> iced::Result {
     iced::run("A cool counter", Counter::update, Counter::view)
@@ -30,7 +30,10 @@ impl Counter {
 
     fn view(&self) -> Column<'_, Message> {
         column![
-            button("Increment").on_press(Message::Increment),
+            button("Increment").on_press(Message::Increment)
+                .style(|theme: &Theme, status|{
+
+                }),
             text(self.value).size(50),
             button("Decrement").on_press(Message::Decrement)
         ]
